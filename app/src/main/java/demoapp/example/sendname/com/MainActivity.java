@@ -38,15 +38,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            String name = editName.getText().toString();
+                String name = editName.getText().toString();
+                if (name.isEmpty()) {
+                    displayText.setText("inserisci un nome!!");
+                } else {
+                    displayText.setText("hai inserito il nome: " + name);
 
-            displayText.setText("hai inserito il nome: "+name);
-
-                vista = (WebView) findViewById(R.id.vistaWeb);
-                vista.setWebViewClient(new WebViewClient());
-                vista.loadUrl("http://demo.gter.it/demo_rfi/read_ip.php?n="+name);
-
-
+                    vista = (WebView) findViewById(R.id.vistaWeb);
+                    vista.setWebViewClient(new WebViewClient());
+                    vista.loadUrl("http://demo.gter.it/demo_rfi/read_ip.php?n=" + name);
+                }
             }
         });
 
