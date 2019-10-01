@@ -23,7 +23,8 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
 
-    private WebView vista;
+    private WebView vistaIP;
+    private WebView vistaMappa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,24 +45,31 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     displayText.setText("hai inserito il nome: " + name);
 
-                    vista = (WebView) findViewById(R.id.vistaWeb);
-                    vista.setWebViewClient(new WebViewClient());
-                    vista.loadUrl("http://demo.gter.it/demo_rfi/read_ip.php?n=" + name);
+                    vistaIP = (WebView) findViewById(R.id.vistaWeb1);
+                    vistaIP.setWebViewClient(new WebViewClient());
+                    vistaIP.loadUrl("http://demo.gter.it/demo_rfi/read_ip.php?n=" + name);
+
+
                 }
             }
         });
 
+        Button tastoMappa = (Button) findViewById(R.id.bntStartConn2);
 
-        // Wire up the button to do stuff
+        tastoMappa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        // get the button
+                    vistaMappa = (WebView) findViewById(R.id.vistaWeb2);
+                    vistaMappa.getSettings().setJavaScriptEnabled(true);
+                    vistaMappa.setWebViewClient(new WebViewClient());
+                    vistaMappa.loadUrl("http://gishosting.gter.it/demo_rfi/mappa.php?n=roberto");
+            }
 
-
-
-    }
+    });
 
 }
-
+}
 /*
     btn.setOnClickListener(new View.OnClickListener() {
             @Override
