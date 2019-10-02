@@ -23,6 +23,24 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
 
+    public static boolean containsWhitespace(String str) {
+        if (!hasLength(str)) {
+            return false;
+        }
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++) {
+            if (Character.isWhitespace(str.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasLength(String str) {
+        return (str != null && str.length() > 0);
+    }
+
+
     private WebView vistaIP;
     private WebView vistaMappa;
 
@@ -35,19 +53,26 @@ public class MainActivity extends AppCompatActivity {
         final TextView displayText = (TextView) findViewById(R.id.textView2);
         Button tastoAvvia = (Button) findViewById(R.id.bntStartConn);
 
+
+
         tastoAvvia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
                 String name = editName.getText().toString();
+                boolean test_ws =  containsWhitespace(name);
+
                 if (name.isEmpty()) {
                     displayText.setText("inserisci un nome!!");
+                } else if(test_ws==true){
+                    displayText.setText("non mettere spazi bianchi, sostituiscili con _ ");
                 } else {
                     displayText.setText("hai inserito il nome: " + name);
 
                     vistaIP = (WebView) findViewById(R.id.vistaWeb1);
                     vistaIP.setWebViewClient(new WebViewClient());
-                    vistaIP.loadUrl("http://demo.gter.it/demo_rfi/read_ip.php?n=" + name);
+                    vistaIP.loadUrl("http:/gishosting.gter.it/demo_rfi/read_ip.php?n=" + name);
 
 
                 }
@@ -60,15 +85,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    vistaMappa = (WebView) findViewById(R.id.vistaWeb2);
-                    vistaMappa.getSettings().setJavaScriptEnabled(true);
-                    vistaMappa.setWebViewClient(new WebViewClient());
-                    vistaMappa.loadUrl("http://gishosting.gter.it/demo_rfi/mappa.php?n=roberto");
+                String name = editName.getText().toString();
+                vistaMappa = (WebView) findViewById(R.id.vistaWeb2);
+                vistaMappa.getSettings().setJavaScriptEnabled(true);
+                vistaMappa.setWebViewClient(new WebViewClient());
+                vistaMappa.loadUrl("http://gishosting.gter.it/demo_rfi/mappa.php?n="+name);
             }
 
-    });
+        });
 
-}
+    }
 }
 /*
     btn.setOnClickListener(new View.OnClickListener() {

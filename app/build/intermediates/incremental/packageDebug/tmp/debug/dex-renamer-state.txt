@@ -1,0 +1,4 @@
+#Wed Oct 02 12:08:47 CEST 2019
+base.0=/home/lorenzo/remote/progetti_convegni/PROGETTI/2019/13-19-Demo_RFI/DemoRFI_App/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
